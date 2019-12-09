@@ -31,7 +31,7 @@ int main() {
     while (1)
     {
         // print shell line
-        printDir();
+        pwd();
         // take input
         if (takeInput(inputString))
             continue;
