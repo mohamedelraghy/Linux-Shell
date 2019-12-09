@@ -4,15 +4,17 @@
 #include<readline/readline.h>
 #include<readline/history.h>  
 #include<string.h>
+#include<>
 
 #define clear() printf("\033[H\033[J")
 
 void init_shell();
 int takeInput(char * );
 void pwd();
+void execArgs(char **);
 
-    int main()
-{
+
+int main() {
 }
 
 void init_shell(){
@@ -44,4 +46,19 @@ void pwd(){
     char pwd[1024];
     getcwd(pwd, sizeof(pwd));
     printf("\nDir: %s", pwd);
+}
+
+void execArgs(char **parsed){
+    pid_t pid = fork();
+    
+    if(pid == -1){
+        printf("\nFailed forking child...");
+        return;
+    }else if (pid == 0){
+        if(execvp(parsed[0], parsed) < 0) printf("\n Could not execute command...");
+        exit(0);
+    }else {
+        wait(NULL);
+        return;
+    }
 }
