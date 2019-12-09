@@ -16,6 +16,7 @@ void execArgs(char **);
 void execArgsPiped(char **, char **);
 void openHelp();
 int ownCmdHandler(char **);
+int parsePipe(char *, char **);
 
     int main()
 {
@@ -178,4 +179,22 @@ int ownCmdHandler(char **parsed) {
     }
 
     return 0;
+}
+
+int parsePipe(char *str, char **strpiped)
+{
+    int i;
+    for (i = 0; i < 2; i++)
+    {
+        strpiped[i] = strsep(&str, "|");
+        if (strpiped[i] == NULL)
+            break;
+    }
+
+    if (strpiped[1] == NULL)
+        return 0; // returns zero if no pipe is found.
+    else
+    {
+        return 1;
+    }
 }
