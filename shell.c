@@ -4,7 +4,8 @@
 #include<readline/readline.h>
 #include<readline/history.h>  
 #include<string.h>
-#include<>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define clear() printf("\033[H\033[J")
 
