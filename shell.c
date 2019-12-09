@@ -9,8 +9,10 @@
 
 void init_shell();
 int takeInput(char * );
-int main(){
+void pwd();
 
+    int main()
+{
 }
 
 void init_shell(){
@@ -36,4 +38,10 @@ int takeInput(char *str){
         strcpy(str, buf);
         return 0;
     } else return 1;
+}
+
+void pwd(){
+    char pwd[1024];
+    getcwd(pwd, sizeof(pwd));
+    printf("\nDir: %s", pwd);
 }
