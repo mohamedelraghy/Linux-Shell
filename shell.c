@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#define MAXCOM 1000 
+#define MAXLIST 100 
 #define clear() printf("\033[H\033[J")
 
 void init_shell();
@@ -17,6 +19,7 @@ void execArgsPiped(char **, char **);
 void openHelp();
 int ownCmdHandler(char **);
 int parsePipe(char *, char **);
+void parseSpace(char *, char **);
 
     int main()
 {
@@ -196,5 +199,20 @@ int parsePipe(char *str, char **strpiped)
     else
     {
         return 1;
+    }
+}
+
+void parseSpace(char *str, char **parsed)
+{
+    int i;
+
+    for (i = 0; i < MAXLIST; i++)
+    {
+        parsed[i] = strsep(&str, " ");
+
+        if (parsed[i] == NULL)
+            break;
+        if (strlen(parsed[i]) == 0)
+            i--;
     }
 }
