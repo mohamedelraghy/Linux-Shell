@@ -13,9 +13,9 @@ void init_shell();
 int takeInput(char * );
 void pwd();
 void execArgs(char **);
+void execArgsPiped(char **, char **);
 
-
-int main() {
+int main(){
 }
 
 void init_shell(){
@@ -61,5 +61,59 @@ void execArgs(char **parsed){
     }else {
         wait(NULL);
         return;
+    }
+}
+
+void execArgsPiped(char **parsed, char **parsedpipe){
+
+    int fd[2]; // file descriptor 0 for read 1 for write
+    pid_t p1, p2;
+
+    if (pipe(fd) < 0){
+        printf("\nPipe could not be initialized");
+        return;
+    }
+    p1 = fork();
+    if (p1 < 0){
+        printf("\nCould not fork");
+        return;
+    }
+
+    if (p1 == 0){
+        // Child 1 executing..
+        // It only needs to write at the write end
+        close(fd[0]);
+        dup2(fd[1], STDOUT_FILENO);
+        close(fd[1]);
+
+        if (execvp(parsed[0], parsed) < 0){
+            printf("\nCould not execute command 1..");
+            exit(0);
+        }
+    }
+    else{
+        // Parent executing
+        p2 = fork();
+
+        if (p2 < 0) {
+            printf("\nCould not fork");
+            return;
+        }
+
+        // Child 2 executing..
+        // It only needs to read at the read end
+        if (p2 == 0){
+            close(fd[1]);
+            dup2(fd[0], STDIN_FILENO);
+            close(fd[0]);
+            if (execvp(parsedpipe[0], parsedpipe) < 0) {
+                printf("\nCould not execute command 2..");
+                exit(0);
+            }
+        }
+        else{
+            wait(NULL);
+            wait(NULL);
+        }
     }
 }
