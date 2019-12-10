@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include "in-out.h"
 #include "parse.h"
-#include "bulitin.h"
 #include "exec.h"
 
 #define MAXCOM 1000 

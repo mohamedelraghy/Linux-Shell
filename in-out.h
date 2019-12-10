@@ -2,14 +2,12 @@
 #include <stdlib.h> // for getenv function
 #include <unistd.h> // for sleep 
 #include <string.h> // for string processing.
-
 #include <readline/readline.h>
 #include <readline/history.h>
 
 #define clear() printf("\033[H\033[J")
 
-void init_shell()
-{
+void init_shell() {
     clear();
     printf("\n\n\n\n******************"
            "************************");
@@ -24,17 +22,16 @@ void init_shell()
     clear();
 }
 
-void Help()
-{
+void Help() {
 
     puts("\n***WELCOME TO MY SHELL HELP***"
+         
          "\nList of Commands supported:"
          "\n>cd"
          "\n>ls"
          "\n>exit"
          "\n>all other general commands available in UNIX shell"
-         "\n>pipe handling"
-         "\n>improper space handling"
+         
          "\n\n\tMade with ❤️ at FCI");
 
     return;
