@@ -1,26 +1,21 @@
 #include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<readline/readline.h>
-#include<readline/history.h>  
+#include<unistd.h> 
 #include<string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include "in-out.h"
 
 #define MAXCOM 1000 
 #define MAXLIST 100 
-#define clear() printf("\033[H\033[J")
 
-void init_shell();
-int takeInput(char * );
 void pwd();
 void execArgs(char **);
 void execArgsPiped(char **, char **);
-void Help();
 int ownCmdHandler(char **);
 int parsePipe(char *, char **);
 void parseSpace(char *, char **);
 int processString(char *str, char **parsed, char **parsedpipe);
+
 
 int main() {
     char inputString[MAXCOM], *parsedArgs[MAXLIST];
@@ -51,30 +46,8 @@ int main() {
     return 0;
 }
 
-void init_shell(){
-    clear();
-    printf("\n\n\n\n******************"
-           "************************");
-    printf("\n\n\n\t****MY SHELL****");
-    printf("\n\n\t-USE AT YOUR OWN RISK-");
-    printf("\n\n\n\n*******************"
-           "***********************");
-    char *username = getenv("USER");
-    printf("\n\n\nUSER is: @%s", username);
-    printf("\n");
-    sleep(1);
-    clear();
-}
 
-int takeInput(char *str){
-    char *buf;
-    buf = readline("\n>>> ");
-    if(strlen(buf) != 0) {
-        add_history(buf);
-        strcpy(str, buf);
-        return 0;
-    } else return 1;
-}
+
 
 int processString(char *str, char **parsed, char **parsedpipe)
 {
@@ -248,24 +221,4 @@ void execArgsPiped(char **parsed, char **parsedpipe){
             wait(NULL);
         }
     }
-}
-
-void Help(){
-    puts("\n***WELCOME TO MY SHELL HELP***"
-         "\nList of Commands supported:"
-         "\n>cd"
-         "\n>ls"
-         "\n>exit"
-         "\n>all other general commands available in UNIX shell"
-         "\n>pipe handling"
-         "\n>improper space handling"
-         "\n Made with ❤️ at FCI");
-
-    return;
-}
-
-void pwd(){
-    char pwd[1024];
-    getcwd(pwd, sizeof(pwd));
-    printf("\nDir: %s", pwd);
 }
