@@ -14,11 +14,11 @@ void init_shell()
     printf("\n\n\n\n******************"
            "************************");
     printf("\n\n\n\t****Simple Shell****");
-    printf("\n\n\t-USE AT EMERGENCIES-");
+    printf("\n\n\t-USE AT EMERGENCIES ⛑️-");
     printf("\n\n\n\n*******************"
            "***********************");
     char *username = getenv("USER");
-    printf("\n\n\nWelcom: %s", username);
+    printf("\n\n\nWelcom: %s😀️", username);
     printf("\n");
     sleep(2);
     clear();
