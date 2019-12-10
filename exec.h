@@ -35,13 +35,13 @@ void execArgsPiped(char **parsed, char **parsedpipe) {
 
     p1 = fork();
 
-    if (p1 == 0) {
-        printf("\nCould not fork");
+    if (p1 <  0) {
+        printf("\nCould not fork1");
         return;
     }
 
     if (p1 == 0) {
-
+        printf("\nin chlid 1");
         close(fd[0]);
         dup2(fd[1], STDOUT_FILENO);
         close(fd[1]);
@@ -53,14 +53,14 @@ void execArgsPiped(char **parsed, char **parsedpipe) {
     }
     else {
         p2 = fork();
-
-        if (p2 == -1) {
-            printf("\nCould not fork");
+        if (p2 < 0) {
+            printf("\nCould not fork2");
             return;
         }
 
         
         if (p2 == 0) {
+            printf("in child 2");
             close(fd[1]);
             dup2(fd[0], STDIN_FILENO);
             close(fd[0]);
@@ -69,7 +69,7 @@ void execArgsPiped(char **parsed, char **parsedpipe) {
                 exit(0);
             }
        
-        } else{
+        } else {
             wait(NULL);
             wait(NULL);
         }

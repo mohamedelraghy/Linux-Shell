@@ -26,7 +26,7 @@ int main() {
         // 2 if it is including a pipe.
 
         if (execFlag == 1) execArgs(parsedArgs);
-
+        
         if (execFlag == 2) execArgsPiped(parsedArgs, parsedArgsPiped);
     }
 
