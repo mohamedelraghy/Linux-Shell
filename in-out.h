@@ -31,6 +31,7 @@ void Help() {
          "\n>ls"
          "\n>exit"
          "\n>all other general commands available in UNIX shell"
+         "\npipe commands (futeaur work)"
          
          "\n\n\tMade with ❤️ at FCI");
 
