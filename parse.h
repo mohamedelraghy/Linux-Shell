@@ -20,7 +20,7 @@ int processString(char *str, char **parsed, char **parsedpipe) {
         parseSpace(str, parsed);
     }
 
-    if (ownCmdHandler(parsed)) return 0;
+    if (CMD(parsed)) return 0;
     else return 1 + piped;
 }
 
