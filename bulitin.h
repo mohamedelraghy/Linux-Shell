@@ -34,7 +34,7 @@ int CMD(char **parsed) {
     case 4:
         username = getenv("USER");
         printf("\nHello🎼️🎙️  %s.\nSimple Linux Shell "
-               "Use it when You loss the hope of your OS❌️⚠️."
+               "Use it when You lose the hope of your OS❌️⚠️."
                "\nUse help to know more..\n",
                username);
         return 1;
