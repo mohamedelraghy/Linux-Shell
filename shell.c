@@ -20,6 +20,7 @@ int main() {
         if (takeInput(inputString)) continue;
         
         execFlag = processString(inputString, parsedArgs, parsedArgsPiped);
+           
         // processString returns zero if there is no command
         // or it is a builtin command,
         // 1 if it is a simple command

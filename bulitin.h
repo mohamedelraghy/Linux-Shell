@@ -5,23 +5,23 @@
 
 int CMD(char **parsed) {
 
-    int NoOfOwnCmds = 4, i, switchOwnArg = 0;
-    char *ListOfOwnCmds[NoOfOwnCmds];
+    int NoOfCom = 4, i, ind = 0;
+    char *Commands[NoOfCom];
     char *username;
 
-    ListOfOwnCmds[0] = "exit";
-    ListOfOwnCmds[1] = "cd";
-    ListOfOwnCmds[2] = "help";
-    ListOfOwnCmds[3] = "hello";
+    Commands[0] = "exit";
+    Commands[1] = "cd";
+    Commands[2] = "help";
+    Commands[3] = "hello";
 
-    for (i = 0; i < NoOfOwnCmds; i++) {
-        if (strcmp(parsed[0], ListOfOwnCmds[i]) == 0) {
-            switchOwnArg = i + 1;
+    for (i = 0; i < NoOfCom; i++) {
+        if (strcmp(parsed[0], Commands[i]) == 0) {
+            ind = i + 1;
             break;
         }
     }
 
-    switch (switchOwnArg) {
+    switch (ind) {
     case 1:
         printf("\n\tGoodbye 👋️\n");
         exit(0);
@@ -33,8 +33,8 @@ int CMD(char **parsed) {
         return 1;
     case 4:
         username = getenv("USER");
-        printf("\nHello %s.\nMind that this is "
-               "not a place to play around."
+        printf("\nHello🎼️🎙️  %s.\nSimple Linux Shell "
+               "Use it when You loss the hope of your OS❌️⚠️."
                "\nUse help to know more..\n",
                username);
         return 1;

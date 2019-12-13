@@ -5,6 +5,7 @@
 #include <sys/wait.h>
 
 void execArgs(char **parsed) {
+
     pid_t pid = fork();
 
     if (pid < 0) {
@@ -43,7 +44,7 @@ void execArgsPiped(char **parsed, char **parsedpipe) {
     if (p1 == 0) {
         printf("\nin chlid 1");
         close(fd[0]);
-        dup2(fd[1], STDOUT_FILENO);
+        dup2(fd[1], 1);
         close(fd[1]);
 
         if (execvp(parsed[0], parsed) < 0) {
@@ -62,7 +63,7 @@ void execArgsPiped(char **parsed, char **parsedpipe) {
         if (p2 == 0) {
             printf("in child 2");
             close(fd[1]);
-            dup2(fd[0], STDIN_FILENO);
+            dup2(fd[0], 0);
             close(fd[0]);
             if (execvp(parsedpipe[0], parsedpipe) < 0) {
                 printf("\nCould not execute command 2..");

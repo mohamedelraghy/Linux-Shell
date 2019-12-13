@@ -40,7 +40,7 @@ void Help() {
 
 void pwd()
 {
-    char pwd[1024];
+    char pwd[1000];
     getcwd(pwd, sizeof(pwd));
     char *username = getenv("USER");
     printf("\n%s:~%s", username, pwd);
