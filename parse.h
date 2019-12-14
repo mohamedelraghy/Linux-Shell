@@ -5,8 +5,8 @@
 #define MAXLIST 100
 
 int parsePipe(char *str, char **strpiped) {
-    int i;
-    for (i = 0; i < 2; i++) {
+    
+    for (int i = 0; i < 2; i++) {
 
         strpiped[i] = strsep(&str, "|");
         if (strpiped[i] == NULL) break;
@@ -17,9 +17,8 @@ int parsePipe(char *str, char **strpiped) {
 }
 
 void parseSpace(char *str, char **parsed) {
-    int i;
 
-    for (i = 0; i < MAXLIST; i++) {
+    for (int i = 0; i < MAXLIST; i++) {
         parsed[i] = strsep(&str, " ");
 
         if (parsed[i] == NULL) break;

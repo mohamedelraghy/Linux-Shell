@@ -5,7 +5,7 @@
 
 int CMD(char **parsed) {
 
-    int NoOfCom = 4, i, ind = 0;
+    int NoOfCom = 4, ind = 0;
     char *Commands[NoOfCom];
     char *username;
 
@@ -14,7 +14,7 @@ int CMD(char **parsed) {
     Commands[2] = "help";
     Commands[3] = "hello";
 
-    for (i = 0; i < NoOfCom; i++) {
+    for (int i = 0; i < NoOfCom; i++) {
         if (strcmp(parsed[0], Commands[i]) == 0) {
             ind = i + 1;
             break;
